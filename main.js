@@ -17,13 +17,11 @@ app.get('/home' ,async(req,res)=>{
 
 app.get('/getWeather', async(req,res)=>{ 
     try{
+        console.log("~~~~~SERVER RESPONSE~~~~~");
         const lon = req.query.lon;
         const lat = req.query.lat;
         console.log(lon);
         console.log(lat);
-        // let lon=7.447;
-        // let lat=46.948;
-        // let product="civil";
         const apiURL= `http://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`;
 
         const response = await axios.get(apiURL);  //API call
@@ -37,7 +35,9 @@ app.get('/getWeather', async(req,res)=>{
         
         res.setHeader('Access-Control-Allow-Origin','*');
         console.log(weatherData);
-        res.json(responseData);  //send data from server to client.
+        console.log("======================================================================================================================");
+        console.log("                                         ************END OF RESPONSE*************");
+        res.json(responseData); 
     }
     catch(error){
         console.error(error);
